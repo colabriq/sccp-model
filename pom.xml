@@ -14,7 +14,7 @@
   <name>SCCP Shared Library</name>
 
   <dependencies>
-	<dependency>
+ 	<dependency>
 		<groupId>org.goodforgoodbusiness</groupId>
 		<artifactId>shared</artifactId>
 		<version>0.1-SNAPSHOT</version>
