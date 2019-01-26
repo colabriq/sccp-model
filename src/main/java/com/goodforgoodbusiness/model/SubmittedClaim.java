@@ -46,5 +46,28 @@ public class SubmittedClaim implements AccessibleClaim {
 	public Stream<String> getPredecessors() {
 		return claim.getLinks().stream().map(Link::getRef);
 	}
+	
+	@Override
+	public int hashCode() {
+		return this.getId().hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o == this) {
+			return true;
+		}
+		
+		if (o instanceof Claim) {
+			return getId().equals(((Claim)o).getId());
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public String toString() {
+		return "SubmittedClaim(" + getId() + ")";
+	}
 }
 

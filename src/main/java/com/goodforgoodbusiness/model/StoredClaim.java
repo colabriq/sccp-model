@@ -88,7 +88,20 @@ public class StoredClaim implements AccessibleClaim, TreeNode<String> {
 	}
 
 	@Override
+	public boolean equals(Object o) {
+		if (o == this) {
+			return true;
+		}
+		
+		if (o instanceof Claim) {
+			return getId().equals(((Claim)o).getId());
+		}
+		
+		return false;
+	}
+	
+	@Override
 	public String toString() {
-		return "Claim(" + innerEnvelope + ", " + links + ", " + signature + ")";
+		return "StoredClaim(" + innerEnvelope + ", " + links + ", " + signature + ")";
 	}
 }
