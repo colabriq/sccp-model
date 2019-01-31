@@ -49,7 +49,7 @@ public class Link {
 				}
 			}
 			
-			return null;
+			throw new IllegalArgumentException(uri);
 		}
 		
 		@Override
