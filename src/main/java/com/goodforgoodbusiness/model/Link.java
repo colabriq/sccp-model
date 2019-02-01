@@ -43,6 +43,10 @@ public class Link {
 		}
 		
 		public static RelType fromUri(String uri) {
+			if (uri.startsWith("claim:")) {
+				uri = "https://schemas.goodforgoodbusiness.org/weft/1.0#" + uri.substring(6);
+			}
+			
 			for (RelType r : values()) {
 				if (r.uri.equals(uri)) {
 					return r;
@@ -55,6 +59,10 @@ public class Link {
 		@Override
 		public String toString() {
 			return uri;
+		}
+
+		public String toPrefixedString() {
+			return uri.replaceAll("^https://schemas.goodforgoodbusiness.org/weft/1.0#", "claim:");
 		}
 	}
 	
@@ -112,5 +120,9 @@ public class Link {
 	@Override
 	public String toString() {
 		return "Link(" + ref.substring(0, 5) + ", " + rel + ")";
+	}
+	
+	public String toHeader() {
+		return "ref=" + ref + "&rel=" + rel.toPrefixedString();
 	}
 }

@@ -97,7 +97,7 @@ public class SubmittableClaim {
 	
 	
 	public Stream<Triple> getTriples() {
-		return Stream.concat(getAdded().stream(), getRemoved().stream());
+		return Stream.concat(getAdded().parallelStream(), getRemoved().parallelStream()).parallel();
 	}
 
 	
