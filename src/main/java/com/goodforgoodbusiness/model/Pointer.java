@@ -3,7 +3,8 @@ package com.goodforgoodbusiness.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Pointer {	
+
+public class Pointer {
 	@Expose
 	@SerializedName("claim_id")
 	private String claimId;
@@ -24,7 +25,7 @@ public class Pointer {
 		this.claimKey = claimKey;
 		this.nonce = nonce;
 	}
-
+	
 	public String getClaimId() {
 		return claimId;
 	}
