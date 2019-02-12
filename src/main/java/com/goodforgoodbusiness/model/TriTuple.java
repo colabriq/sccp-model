@@ -108,8 +108,8 @@ public class TriTuple {
 	public static TriTuple fromN3Quoted(Optional<String> sub, Optional<String> pre, Optional<String> obj) {
 		return new TriTuple(
 			sub.map(TriTuple::stripN3),
-			sub.map(TriTuple::stripN3),
-			sub.map(TriTuple::stripN3)
+			pre.map(TriTuple::stripN3),
+			obj.map(TriTuple::stripN3)
 		);
 	}
 
