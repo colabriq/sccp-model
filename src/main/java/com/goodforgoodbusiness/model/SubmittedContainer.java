@@ -5,12 +5,12 @@ import java.util.stream.Stream;
 
 import org.apache.jena.graph.Triple;
 
-public class SubmittedClaim implements AccessibleClaim {
-	private final SubmittableClaim claim;
+public class SubmittedContainer implements AccessibleContainer {
+	private final SubmittableContainer container;
 	private final SubmitResult result;
 	
-	public SubmittedClaim(SubmittableClaim claim, SubmitResult result) {
-		this.claim = claim;
+	public SubmittedContainer(SubmittableContainer container, SubmitResult result) {
+		this.container = container;
 		this.result = result;
 	}
 	
@@ -20,21 +20,21 @@ public class SubmittedClaim implements AccessibleClaim {
 
 	@Override
 	public Stream<Triple> getTriples() {
-		return claim.getTriples();
+		return container.getTriples();
 	}
 	
 	@Override
 	public Stream<Triple> getRemoved() {
-		return claim.getRemoved().stream();
+		return container.getRemoved().stream();
 	}
 
 	@Override
 	public Stream<Triple> getAdded() {
-		return claim.getAdded().stream();
+		return container.getAdded().stream();
 	}
 	
 	public Set<Link> getLinks() {
-		return claim.getLinks();
+		return container.getLinks();
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class SubmittedClaim implements AccessibleClaim {
 
 	@Override
 	public Stream<String> getPredecessors() {
-		return claim.getLinks().stream().map(Link::getRef);
+		return container.getLinks().stream().map(Link::getRef);
 	}
 	
 	@Override
@@ -58,8 +58,8 @@ public class SubmittedClaim implements AccessibleClaim {
 			return true;
 		}
 		
-		if (o instanceof Claim) {
-			return getId().equals(((Claim)o).getId());
+		if (o instanceof Container) {
+			return getId().equals(((Container)o).getId());
 		}
 		
 		return false;
@@ -67,7 +67,7 @@ public class SubmittedClaim implements AccessibleClaim {
 	
 	@Override
 	public String toString() {
-		return "SubmittedClaim(" + getId() + ")";
+		return "SubmittedContainer(" + getId() + ")";
 	}
 }
 

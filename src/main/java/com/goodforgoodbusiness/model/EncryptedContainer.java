@@ -8,7 +8,7 @@ import com.goodforgoodbusiness.shared.treesort.TreeNode;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class EncryptedClaim implements Claim, TreeNode<String> {
+public class EncryptedContainer implements Container, TreeNode<String> {
 	@Expose
 	@SerializedName("inner_envelope")
 	private EncryptedEnvelope innerEnvelope;
@@ -21,13 +21,13 @@ public class EncryptedClaim implements Claim, TreeNode<String> {
 	@SerializedName("signature")
 	private Signature signature;
 	
-	public EncryptedClaim(EncryptedEnvelope env, Set<? extends ProvenLink> links, Signature signature) {
+	public EncryptedContainer(EncryptedEnvelope env, Set<? extends ProvenLink> links, Signature signature) {
 		this.innerEnvelope = env;
 		this.links = links;
 		this.signature = signature;
 	}
 	
-	public EncryptedClaim() {
+	public EncryptedContainer() {
 	}
 	
 	@Override
@@ -68,8 +68,8 @@ public class EncryptedClaim implements Claim, TreeNode<String> {
 			return true;
 		}
 		
-		if (o instanceof Claim) {
-			return getId().equals(((Claim)o).getId());
+		if (o instanceof Container) {
+			return getId().equals(((Container)o).getId());
 		}
 		
 		return false;
@@ -77,6 +77,6 @@ public class EncryptedClaim implements Claim, TreeNode<String> {
 
 	@Override
 	public String toString() {
-		return "EncryptedClaim(" + innerEnvelope + ", " + links + ", " + signature + ")";
+		return "EncryptedContainer(" + innerEnvelope + ", " + links + ", " + signature + ")";
 	}
 }

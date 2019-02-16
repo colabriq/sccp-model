@@ -7,7 +7,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import com.goodforgoodbusiness.shared.encode.Hex;
 
-public interface Claim {
+public interface Container {
 	public String getId();
 	public Collection<? extends Link> getLinks();
 	

@@ -15,9 +15,9 @@ import com.google.common.reflect.TypeToken;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class StoredClaim implements AccessibleClaim, TreeNode<String> {
-	public static List<StoredClaim> fromJson(String json) {
-		return JSON.decode(json, new TypeToken<List<StoredClaim>>() {}.getType() );
+public class StoredContainer implements AccessibleContainer, TreeNode<String> {
+	public static List<StoredContainer> fromJson(String json) {
+		return JSON.decode(json, new TypeToken<List<StoredContainer>>() {}.getType() );
 	}
 	
 	@Expose
@@ -32,13 +32,13 @@ public class StoredClaim implements AccessibleClaim, TreeNode<String> {
 	@SerializedName("signature")
 	private Signature signature;
 	
-	public StoredClaim(Envelope env, Set<? extends ProvenLink> links, Signature signature) {
+	public StoredContainer(Envelope env, Set<? extends ProvenLink> links, Signature signature) {
 		this.innerEnvelope = env;
 		this.links = links;
 		this.signature = signature;
 	}
 	
-	public StoredClaim() {
+	public StoredContainer() {
 	}
 	
 	public Envelope getInnerEnvelope() {
@@ -93,8 +93,8 @@ public class StoredClaim implements AccessibleClaim, TreeNode<String> {
 			return true;
 		}
 		
-		if (o instanceof Claim) {
-			return getId().equals(((Claim)o).getId());
+		if (o instanceof Container) {
+			return getId().equals(((Container)o).getId());
 		}
 		
 		return false;
@@ -102,6 +102,6 @@ public class StoredClaim implements AccessibleClaim, TreeNode<String> {
 	
 	@Override
 	public String toString() {
-		return "StoredClaim(" + innerEnvelope + ", " + links + ", " + signature + ")";
+		return "StoredContainer(" + innerEnvelope + ", " + links + ", " + signature + ")";
 	}
 }

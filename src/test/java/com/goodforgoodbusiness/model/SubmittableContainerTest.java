@@ -6,10 +6,10 @@ import org.apache.jena.graph.Triple;
 
 import com.goodforgoodbusiness.shared.encode.JSON;
 
-public class SubmittableClaimTest {
+public class SubmittableContainerTest {
 	public static void main(String[] args) {
-		var claim1 = new SubmittableClaim();
-		claim1.added(
+		var container1 = new SubmittableContainer();
+		container1.added(
 			new Triple(
 				createLiteralNode("a", null, null),
 				createLiteralNode("b", null, null),
@@ -17,11 +17,11 @@ public class SubmittableClaimTest {
 			)
 		);
 		
-		var json = JSON.encode(claim1).toString();
+		var json = JSON.encode(container1).toString();
 		System.out.println(json);
 		
-		var claim2 = JSON.decode(json, SubmittableClaim.class);
-		System.out.println(claim2);
+		var container2 = JSON.decode(json, SubmittableContainer.class);
+		System.out.println(container2);
 		
 	}
 }

@@ -6,12 +6,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class Pointer {
 	@Expose
-	@SerializedName("claim_id")
-	private String claimId;
+	@SerializedName("container_id")
+	private String containerId;
 	
 	@Expose
-	@SerializedName("claim_key")
-	private String claimKey;
+	@SerializedName("container_key")
+	private String containerKey;
 	
 	@Expose
 	@SerializedName("nonce")
@@ -20,18 +20,18 @@ public class Pointer {
 	public Pointer() {
 	}
 	
-	public Pointer(String claimId, String claimKey, long nonce) {
-		this.claimId = claimId;
-		this.claimKey = claimKey;
+	public Pointer(String containerId, String containerKey, long nonce) {
+		this.containerId = containerId;
+		this.containerKey = containerKey;
 		this.nonce = nonce;
 	}
 	
-	public String getClaimId() {
-		return claimId;
+	public String getContainerId() {
+		return containerId;
 	}
 
-	public String getClaimKey() {
-		return claimKey;
+	public String getContainerKey() {
+		return containerKey;
 	}
 	
 	public long getNonce() {
@@ -40,7 +40,7 @@ public class Pointer {
 	
 	@Override
 	public int hashCode() {
-		return claimId.hashCode() ^ claimKey.hashCode() ^ Long.hashCode(nonce);
+		return containerId.hashCode() ^ containerKey.hashCode() ^ Long.hashCode(nonce);
 	}
 	
 	@Override
@@ -51,7 +51,7 @@ public class Pointer {
 		
 		if (o instanceof Pointer) {
 			var p = (Pointer)o;
-			return claimId.equals(p.claimId) && claimKey.equals(p.claimKey) && (nonce == p.nonce);
+			return containerId.equals(p.containerId) && containerKey.equals(p.containerKey) && (nonce == p.nonce);
 		}
 		
 		return false;
@@ -59,6 +59,6 @@ public class Pointer {
 	
 	@Override
 	public String toString() {
-		return "Pointer(" + claimId + ")";
+		return "Pointer(" + containerId + ")";
 	}
 }

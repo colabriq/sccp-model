@@ -1,6 +1,6 @@
 package com.goodforgoodbusiness.model;
 
-public class StoredClaimTest {
+public class StoredContainerTest {
 	public static void main(String[] args) {
 //		var trup = new Triple(
 //			NodeFactory.createURI("https://twitter.com/ijmad8x"),
@@ -15,7 +15,7 @@ public class StoredClaimTest {
 		var response = "[{" + 
 			" \"inner_envelope\": {" + 
 			"  \"contents\": {" + 
-			"   \"type\": \"claim\"," + 
+			"   \"type\": \"CLAIM\"," + 
 			"   \"added\": [" + 
 			"    {" + 
 			"     \"s\": {" + 
@@ -74,9 +74,9 @@ public class StoredClaimTest {
 			"}]"
 			;
 		
-		var claims = StoredClaim.fromJson(response);
-		for (StoredClaim claim : claims) {
-			System.out.println(claim);
+		var containers = StoredContainer.fromJson(response);
+		for (StoredContainer container : containers) {
+			System.out.println(container);
 		}
 	}
 }

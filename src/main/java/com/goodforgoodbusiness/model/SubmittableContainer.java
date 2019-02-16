@@ -24,25 +24,25 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 
-@JsonAdapter(SubmittableClaim.Serializer.class)
-public class SubmittableClaim {
-	public static class Serializer implements JsonSerializer<SubmittableClaim>, JsonDeserializer<SubmittableClaim> {
+@JsonAdapter(SubmittableContainer.Serializer.class)
+public class SubmittableContainer {
+	public static class Serializer implements JsonSerializer<SubmittableContainer>, JsonDeserializer<SubmittableContainer> {
 		@Override
-		public JsonElement serialize(SubmittableClaim claim, Type type, JsonSerializationContext ctx) {
+		public JsonElement serialize(SubmittableContainer container, Type type, JsonSerializationContext ctx) {
 			var obj = new JsonObject();
 			
-			obj.add("added", ctx.serialize(claim.getAdded()));
-			obj.add("removed", ctx.serialize(claim.getRemoved()));
-			obj.add("links", ctx.serialize(claim.getLinks()));
+			obj.add("added", ctx.serialize(container.getAdded()));
+			obj.add("removed", ctx.serialize(container.getRemoved()));
+			obj.add("links", ctx.serialize(container.getLinks()));
 			
 			return obj;
 		}
 		
 		@Override
-		public SubmittableClaim deserialize(JsonElement json, Type type, JsonDeserializationContext ctx) {
+		public SubmittableContainer deserialize(JsonElement json, Type type, JsonDeserializationContext ctx) {
 			JsonObject obj = json.getAsJsonObject();
 			
-			return new SubmittableClaim(
+			return new SubmittableContainer(
 				ctx.deserialize(obj.get("added"), TypeToken.getParameterized(List.class, Triple.class).getType()),
 				ctx.deserialize(obj.get("removed"), TypeToken.getParameterized(List.class, Triple.class).getType()),
 				ctx.deserialize(obj.get("links"), TypeToken.getParameterized(Set.class, Link.class).getType())
@@ -62,13 +62,13 @@ public class SubmittableClaim {
 	@SerializedName("links")
 	private final Set<Link> links;
 	
-	public SubmittableClaim() {
+	public SubmittableContainer() {
 		this.added = new LinkedList<>();
 		this.removed = new LinkedList<>();
 		this.links = new HashSet<>();
 	}
 	
-	public SubmittableClaim(List<Triple> added, List<Triple> removed, Set<Link> links) {
+	public SubmittableContainer(List<Triple> added, List<Triple> removed, Set<Link> links) {
 		this.added = added.stream().collect(Collectors.toList());
 		this.removed = removed.stream().collect(Collectors.toList());
 		this.links = links;
@@ -111,6 +111,6 @@ public class SubmittableClaim {
 	
 	@Override
 	public String toString() {
-		return "SubmittableClaim(added=" + added + ", removed=" + removed + ", links=" + links + ")";
+		return "SubmittableContainer(added=" + added + ", removed=" + removed + ", links=" + links + ")";
 	}
 }

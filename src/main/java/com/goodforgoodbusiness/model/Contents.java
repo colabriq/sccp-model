@@ -21,13 +21,13 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 
 public class Contents {
-	@JsonAdapter(ThreadTypeSerializer.class)
-	public static enum ThreadType {
+	@JsonAdapter(ContentsTypeSerializer.class)
+	public static enum ContentsType {
 		CLAIM("claim");
 
 		private final String value;
 		
-		private ThreadType(String value) {
+		private ContentsType(String value) {
 			this.value = value;
 		}
 		
@@ -36,9 +36,9 @@ public class Contents {
 			return value;
 		}
 		
-		public static ThreadType fromString(String string) {
+		public static ContentsType fromString(String string) {
 			return Stream
-				.of(ThreadType.values())
+				.of(ContentsType.values())
 				.filter(tt -> tt.value.equals(string))
 				.findFirst()
 				.orElse(null)
@@ -46,21 +46,21 @@ public class Contents {
 		}
 	}
 	
-	public static class ThreadTypeSerializer implements JsonSerializer<ThreadType>, JsonDeserializer<ThreadType> {
+	public static class ContentsTypeSerializer implements JsonSerializer<ContentsType>, JsonDeserializer<ContentsType> {
 		@Override
-		public JsonElement serialize(ThreadType tt, Type type, JsonSerializationContext ctx) {
+		public JsonElement serialize(ContentsType tt, Type type, JsonSerializationContext ctx) {
 			return new JsonPrimitive(tt.toString());
 		}
 		
 		@Override
-		public ThreadType deserialize(JsonElement json, Type type, JsonDeserializationContext ctx) {
-			return ThreadType.fromString(json.getAsString());
+		public ContentsType deserialize(JsonElement json, Type type, JsonDeserializationContext ctx) {
+			return ContentsType.fromString(json.getAsString());
 		}
 	}
 	
 	@Expose
 	@SerializedName("type")
-	private ThreadType type;
+	private ContentsType type;
 	
 	@Expose
 	@SerializedName("antecedents")
@@ -81,7 +81,7 @@ public class Contents {
 	public Contents() {
 	}
 	
-	public Contents(ThreadType type, List<String> ante, List<? extends Triple> added, List<? extends Triple> removed, LinkSecret linkSec) {
+	public Contents(ContentsType type, List<String> ante, List<? extends Triple> added, List<? extends Triple> removed, LinkSecret linkSec) {
 		this.type = type;
 		this.antecedents = ante;
 		this.added = added;
