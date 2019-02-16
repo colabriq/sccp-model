@@ -1,6 +1,6 @@
 package com.goodforgoodbusiness.model;
 
-import static com.goodforgoodbusiness.shared.encode.Hash.sha256;
+import static com.goodforgoodbusiness.shared.encode.Hash.sha512;
 
 import com.goodforgoodbusiness.shared.encode.CBOR;
 import com.goodforgoodbusiness.shared.encode.Hex;
@@ -14,7 +14,7 @@ public class Envelope {
 	
 	@Expose
 	@SerializedName("hashkey")
-	private String hashkey;
+	private String hashKey;
 	
 	@Expose
 	@SerializedName("link_verifier")
@@ -28,14 +28,14 @@ public class Envelope {
 	}
 	
 	public Envelope(Contents contents, LinkVerifier linkVerifier, Signature signature) {
-		this.hashkey = Hex.encode(sha256(CBOR.forObject(contents)));
+		this.hashKey = Hex.encode(sha512(CBOR.forObject(contents)));
 		this.contents = contents;
 		this.linkVerifier = linkVerifier;
 		this.signature = signature;
 	}
 	
 	public String getHashKey() {
-		return hashkey;
+		return hashKey;
 	}
 	
 	public Contents getContents() {
@@ -52,14 +52,14 @@ public class Envelope {
 	
 	@Override
 	public int hashCode() {
-		return this.hashkey.hashCode();
+		return this.hashKey.hashCode();
 	}
 	
 	@Override
 	public String toString() {
 		return "Envelope(" + 
 			"contents=" + contents + ", " +
-			"hashkey=" + hashkey.substring(0, 5) + "..., " +
+			"hashKey=" + hashKey.substring(0, 5) + "..., " +
 			"signature=" + signature + ", " +	
 			"linkVerifier=" + linkVerifier + ", " + 
 		")";
