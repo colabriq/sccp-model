@@ -15,9 +15,9 @@ import com.google.common.reflect.TypeToken;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class StoredContainer implements AccessibleContainer, TreeNode<String> {
-	public static List<StoredContainer> fromJson(String json) {
-		return JSON.decode(json, new TypeToken<List<StoredContainer>>() {}.getType() );
+public class StorableContainer implements AccessibleContainer, TreeNode<String> {
+	public static List<StorableContainer> fromJson(String json) {
+		return JSON.decode(json, new TypeToken<List<StorableContainer>>() {}.getType() );
 	}
 	
 	@Expose
@@ -32,13 +32,13 @@ public class StoredContainer implements AccessibleContainer, TreeNode<String> {
 	@SerializedName("signature")
 	private Signature signature;
 	
-	public StoredContainer(Envelope env, Set<? extends ProvenLink> links, Signature signature) {
+	public StorableContainer(Envelope env, Set<? extends ProvenLink> links, Signature signature) {
 		this.innerEnvelope = env;
 		this.links = links;
 		this.signature = signature;
 	}
 	
-	public StoredContainer() {
+	public StorableContainer() {
 	}
 	
 	public Envelope getInnerEnvelope() {

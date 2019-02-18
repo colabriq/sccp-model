@@ -74,8 +74,8 @@ public class StoredContainerTest {
 			"}]"
 			;
 		
-		var containers = StoredContainer.fromJson(response);
-		for (StoredContainer container : containers) {
+		var containers = StorableContainer.fromJson(response);
+		for (StorableContainer container : containers) {
 			System.out.println(container);
 		}
 	}
