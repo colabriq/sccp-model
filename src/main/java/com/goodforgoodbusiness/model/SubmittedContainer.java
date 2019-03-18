@@ -14,6 +14,7 @@ public class SubmittedContainer implements AccessibleContainer {
 		this.result = result;
 	}
 	
+	@Override
 	public String getId() {
 		return result.getId();
 	}
@@ -33,6 +34,7 @@ public class SubmittedContainer implements AccessibleContainer {
 		return container.getAdded().stream();
 	}
 	
+	@Override
 	public Set<Link> getLinks() {
 		return container.getLinks();
 	}

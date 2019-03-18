@@ -39,6 +39,7 @@ public class EncryptedContainer implements Container, TreeNode<String> {
 		return innerEnvelope;
 	}
 	
+	@Override
 	public Set<? extends ProvenLink> getLinks() {
 		return Collections.unmodifiableSet(links);
 	}

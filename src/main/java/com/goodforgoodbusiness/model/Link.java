@@ -44,7 +44,7 @@ public class Link {
 		
 		public static RelType fromUri(String uri) {
 			if (uri.startsWith("claim:")) {
-				uri = "https://schemas.goodforgoodbusiness.org/weft/1.0#" + uri.substring(6);
+				return fromUri("https://schemas.goodforgoodbusiness.org/weft/1.0#" + uri.substring(6));
 			}
 			
 			for (RelType r : values()) {

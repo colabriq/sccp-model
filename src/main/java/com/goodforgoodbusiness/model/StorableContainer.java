@@ -45,20 +45,22 @@ public class StorableContainer implements AccessibleContainer, TreeNode<String> 
 		return innerEnvelope;
 	}
 	
+	@Override
 	public Stream<Triple> getAdded() {
-		return innerEnvelope.getContents().getAdded().stream()
-		;
+		return innerEnvelope.getContents().getAdded().stream();
 	}
 	
+	@Override
 	public Stream<Triple> getRemoved(){
-		return innerEnvelope.getContents().getRemoved().stream()
-		;
+		return innerEnvelope.getContents().getRemoved().stream();
 	}
 	
+	@Override
 	public Stream<Triple> getTriples() {
 		return concat(getRemoved(), getAdded());
 	}
 	
+	@Override
 	public Set<? extends ProvenLink> getLinks() {
 		return unmodifiableSet(links);
 	}
