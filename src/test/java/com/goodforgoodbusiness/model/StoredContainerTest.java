@@ -1,5 +1,7 @@
 package com.goodforgoodbusiness.model;
 
+import static com.goodforgoodbusiness.model.StorableContainer.toStorableContainers;
+
 public class StoredContainerTest {
 	public static void main(String[] args) {
 //		var trup = new Triple(
@@ -74,7 +76,7 @@ public class StoredContainerTest {
 			"}]"
 			;
 		
-		var containers = StorableContainer.fromJson(response);
+		var containers = toStorableContainers(response);
 		for (StorableContainer container : containers) {
 			System.out.println(container);
 		}

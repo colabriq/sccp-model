@@ -16,7 +16,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class StorableContainer implements AccessibleContainer, TreeNode<String> {
-	public static List<StorableContainer> fromJson(String json) {
+	public static List<StorableContainer> toStorableContainers(String json) {
 		return JSON.decode(json, new TypeToken<List<StorableContainer>>() {}.getType() );
 	}
 	
