@@ -66,6 +66,9 @@ public class TriTuple {
 		else if (node.isLiteral()) {
 			return Optional.of(node.getLiteralLexicalForm());
 		}
+		else if (node.isBlank()) {
+			return Optional.of(node.getBlankNodeId().toString());
+		}
 		else {
 			throw new IllegalArgumentException(node.toString());
 		}
