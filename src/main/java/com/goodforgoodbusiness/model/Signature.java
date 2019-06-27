@@ -26,6 +26,10 @@ public class Signature {
 		this.signature = signature;
 	}
 	
+	public String getDID() {
+		return did;
+	}
+	
 	@Override
 	public String toString() {
 		return "Signature(" + did + ", " + algorithm + ", " + signature.substring(0, 5) + "...)";
