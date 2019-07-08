@@ -4,34 +4,22 @@
 
   <parent>
     <groupId>org.goodforgoodbusiness</groupId>
-    <artifactId>sccp-lib</artifactId>
-    <version>0.1-SNAPSHOT</version>
-    <relativePath>../pom.xml</relativePath>
+    <artifactId>sccp</artifactId>
+    <version>0.2-SNAPSHOT</version>
+    <relativePath>../../pom.xml</relativePath>
   </parent>
 
   <artifactId>model</artifactId>
   <packaging>jar</packaging>
   <name>SCCP Shared Library</name>
+  <version>0.2-SNAPSHOT</version>
 
   <dependencies>
  	<dependency>
 		<groupId>org.goodforgoodbusiness</groupId>
 		<artifactId>shared</artifactId>
-		<version>0.1-SNAPSHOT</version>
+		<version>0.2-SNAPSHOT</version>
 	</dependency>
-  
-    <dependency>
-      <groupId>org.apache.jena</groupId>
-      <artifactId>apache-jena-libs</artifactId>
-      <type>pom</type>
-      <version>${jena.version}</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.apache.jena</groupId>
-      <artifactId>jena-text</artifactId>
-      <version>${jena.version}</version>
-    </dependency>
     
     <dependency>
       <groupId>com.google.code.gson</groupId>
