@@ -176,7 +176,38 @@ public class TriTuple {
 	}
 	
 	/**
-	 * Create all possible combinations for this TriTuple
+	 * Create possible match combinations for this TriTuple
+	 */
+	public Stream<TriTuple> allCombinations() {
+		var sub = getSubject();
+		var pre = getPredicate();
+		var obj = getObject();
+		
+		var any = Optional.<String>empty();
+		
+		var combinations = Stream.of(
+			// pick 3
+			new TriTuple(sub, pre, obj),
+			
+			// pick 2
+			new TriTuple(sub, pre, any),
+			new TriTuple(sub, any, obj),
+			new TriTuple(any, pre, obj),
+			
+			// pick 1
+			new TriTuple(sub, any, any),
+			new TriTuple(any, pre, any),
+			new TriTuple(any, any, obj),
+			
+			// pick 0
+			new TriTuple(any, any, any)
+		);
+		
+		return combinations;
+	}
+	
+	/**
+	 * Create possible match combinations for this TriTuple
 	 */
 	public Stream<TriTuple> matchingCombinations() {
 		var sub = getSubject();
