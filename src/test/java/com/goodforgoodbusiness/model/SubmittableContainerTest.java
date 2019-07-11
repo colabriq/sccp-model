@@ -6,9 +6,17 @@ import org.apache.jena.graph.Triple;
 
 import com.goodforgoodbusiness.shared.encode.JSON;
 
+import io.vertx.core.Future;
+
 public class SubmittableContainerTest {
 	public static void main(String[] args) {
-		var container1 = new SubmittableContainer();
+		var container1 = new SubmittableContainer() {
+			@Override
+			public void submit(Future<StorableContainer> future) {
+				throw new UnsupportedOperationException();
+			}
+		};
+		
 		container1.added(
 			new Triple(
 				createLiteralNode("a", null, null),

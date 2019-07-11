@@ -3,7 +3,6 @@ package com.goodforgoodbusiness.model;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Collections.unmodifiableSet;
 
-import java.lang.reflect.Type;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,42 +12,36 @@ import java.util.stream.Stream;
 
 import org.apache.jena.graph.Triple;
 
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
 import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 
-@JsonAdapter(SubmittableContainer.Serializer.class)
-public class SubmittableContainer {
-	public static class Serializer implements JsonSerializer<SubmittableContainer>, JsonDeserializer<SubmittableContainer> {
-		@Override
-		public JsonElement serialize(SubmittableContainer container, Type type, JsonSerializationContext ctx) {
-			var obj = new JsonObject();
-			
-			obj.add("added", ctx.serialize(container.getAdded()));
-			obj.add("removed", ctx.serialize(container.getRemoved()));
-			obj.add("links", ctx.serialize(container.getLinks()));
-			
-			return obj;
-		}
-		
-		@Override
-		public SubmittableContainer deserialize(JsonElement json, Type type, JsonDeserializationContext ctx) {
-			JsonObject obj = json.getAsJsonObject();
-			
-			return new SubmittableContainer(
-				ctx.deserialize(obj.get("added"), TypeToken.getParameterized(List.class, Triple.class).getType()),
-				ctx.deserialize(obj.get("removed"), TypeToken.getParameterized(List.class, Triple.class).getType()),
-				ctx.deserialize(obj.get("links"), TypeToken.getParameterized(Set.class, Link.class).getType())
-			);
-		}
-	}
+import io.vertx.core.Future;
+
+//@JsonAdapter(SubmittableContainer.Serializer.class)
+public abstract class SubmittableContainer {
+//	public static class Serializer implements JsonSerializer<SubmittableContainer>, JsonDeserializer<SubmittableContainer> {
+//		@Override
+//		public JsonElement serialize(SubmittableContainer container, Type type, JsonSerializationContext ctx) {
+//			var obj = new JsonObject();
+//			
+//			obj.add("added", ctx.serialize(container.getAdded()));
+//			obj.add("removed", ctx.serialize(container.getRemoved()));
+//			obj.add("links", ctx.serialize(container.getLinks()));
+//			
+//			return obj;
+//		}
+//		
+//		@Override
+//		public SubmittableContainer deserialize(JsonElement json, Type type, JsonDeserializationContext ctx) {
+//			JsonObject obj = json.getAsJsonObject();
+//			
+//			return new SubmittableContainer(
+//				ctx.deserialize(obj.get("added"), TypeToken.getParameterized(List.class, Triple.class).getType()),
+//				ctx.deserialize(obj.get("removed"), TypeToken.getParameterized(List.class, Triple.class).getType()),
+//				ctx.deserialize(obj.get("links"), TypeToken.getParameterized(Set.class, Link.class).getType())
+//			);
+//		}
+//	}
 	
 	@Expose
 	@SerializedName("added")
@@ -108,6 +101,11 @@ public class SubmittableContainer {
 	public Set<Link> getLinks() {
 		return unmodifiableSet(links);
 	}
+	
+	/**
+	 * To be implemented by DHT
+	 */
+	public abstract void submit(Future<StorableContainer> future);
 	
 	@Override
 	public String toString() {
