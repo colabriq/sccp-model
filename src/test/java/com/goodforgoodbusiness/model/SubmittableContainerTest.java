@@ -12,7 +12,7 @@ public class SubmittableContainerTest {
 	public static void main(String[] args) {
 		var container1 = new SubmittableContainer() {
 			@Override
-			public void submit(Future<StorableContainer> future) {
+			public void submit(Future<StorableContainer> future, SubmitMode mode) {
 				throw new UnsupportedOperationException();
 			}
 		};

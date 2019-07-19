@@ -20,14 +20,14 @@ import io.vertx.core.Future;
 //@JsonAdapter(SubmittableContainer.Serializer.class)
 public abstract class SubmittableContainer {
 	public enum SubmitMode {
-		SYNCHRONOUS,
-		ASYNCHRONOUS,
+		SYNC,
+		ASYNC,
 		NONE
 		
 		;
 		
 		public static SubmitMode getDefault() {
-			return SYNCHRONOUS;
+			return ASYNC;
 		}
 	}
 	
