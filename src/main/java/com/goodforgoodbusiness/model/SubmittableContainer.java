@@ -19,29 +19,17 @@ import io.vertx.core.Future;
 
 //@JsonAdapter(SubmittableContainer.Serializer.class)
 public abstract class SubmittableContainer {
-//	public static class Serializer implements JsonSerializer<SubmittableContainer>, JsonDeserializer<SubmittableContainer> {
-//		@Override
-//		public JsonElement serialize(SubmittableContainer container, Type type, JsonSerializationContext ctx) {
-//			var obj = new JsonObject();
-//			
-//			obj.add("added", ctx.serialize(container.getAdded()));
-//			obj.add("removed", ctx.serialize(container.getRemoved()));
-//			obj.add("links", ctx.serialize(container.getLinks()));
-//			
-//			return obj;
-//		}
-//		
-//		@Override
-//		public SubmittableContainer deserialize(JsonElement json, Type type, JsonDeserializationContext ctx) {
-//			JsonObject obj = json.getAsJsonObject();
-//			
-//			return new SubmittableContainer(
-//				ctx.deserialize(obj.get("added"), TypeToken.getParameterized(List.class, Triple.class).getType()),
-//				ctx.deserialize(obj.get("removed"), TypeToken.getParameterized(List.class, Triple.class).getType()),
-//				ctx.deserialize(obj.get("links"), TypeToken.getParameterized(Set.class, Link.class).getType())
-//			);
-//		}
-//	}
+	public enum SubmitMode {
+		SYNCHRONOUS,
+		ASYNCHRONOUS,
+		NONE
+		
+		;
+		
+		public static SubmitMode getDefault() {
+			return SYNCHRONOUS;
+		}
+	}
 	
 	@Expose
 	@SerializedName("added")
@@ -105,7 +93,7 @@ public abstract class SubmittableContainer {
 	/**
 	 * To be implemented by DHT
 	 */
-	public abstract void submit(Future<StorableContainer> future);
+	public abstract void submit(Future<StorableContainer> future, SubmitMode mode);
 	
 	@Override
 	public String toString() {
