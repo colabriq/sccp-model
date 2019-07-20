@@ -24,6 +24,10 @@ import com.google.gson.annotations.SerializedName;
 /** Like a triple, but just the values, not data types or other associated gubbins. */
 @JsonAdapter(TriTuple.Serializer.class)
 public class TriTuple {
+	private static Optional<String> ANY = Optional.empty();
+	
+	public static final TriTuple ANY_ANY_ANY = new TriTuple(ANY, ANY, ANY);
+	
 	public static class Serializer implements JsonSerializer<TriTuple>, JsonDeserializer<TriTuple> {
 		@Override
 		public JsonElement serialize(TriTuple tt, Type type, JsonSerializationContext ctx) {
@@ -176,62 +180,40 @@ public class TriTuple {
 	}
 	
 	/**
-	 * Create possible match combinations for this TriTuple
+	 * Create possible match combinations
+	 * This includes (_, _, _) and (_, p, _)
 	 */
 	public Stream<TriTuple> allCombinations() {
-		var sub = getSubject();
-		var pre = getPredicate();
-		var obj = getObject();
-		
-		var any = Optional.<String>empty();
-		
-		var combinations = Stream.of(
-			// pick 3
-			new TriTuple(sub, pre, obj),
-			
-			// pick 2
-			new TriTuple(sub, pre, any),
-			new TriTuple(sub, any, obj),
-			new TriTuple(any, pre, obj),
-			
-			// pick 1
-			new TriTuple(sub, any, any),
-			new TriTuple(any, pre, any),
-			new TriTuple(any, any, obj),
-			
-			// pick 0
-			new TriTuple(any, any, any)
+		return Stream.concat(
+			matchingCombinations(),
+			Stream.of(
+				ANY_ANY_ANY,
+				new TriTuple(ANY, getPredicate(), ANY)
+			)
 		);
-		
-		return combinations;
 	}
 	
 	/**
-	 * Create possible match combinations for this TriTuple
+	 * Create possible match combinations
+	 * This excludes (_, _, _) and (_, p, _)
 	 */
 	public Stream<TriTuple> matchingCombinations() {
 		var sub = getSubject();
 		var pre = getPredicate();
 		var obj = getObject();
 		
-		var any = Optional.<String>empty();
-		
 		var combinations = Stream.of(
 			// pick 3
 			new TriTuple(sub, pre, obj),
 			
 			// pick 2
-			new TriTuple(sub, pre, any),
-			new TriTuple(sub, any, obj),
-			new TriTuple(any, pre, obj),
+			new TriTuple(sub, pre, ANY),
+			new TriTuple(sub, ANY, obj),
+			new TriTuple(ANY, pre, obj),
 			
 			// pick 1
-			new TriTuple(sub, any, any),
-//			new TriTuple(any, pre, any),
-			new TriTuple(any, any, obj)
-			
-			// pick 0
-//			new TriTuple(any, any, any)
+			new TriTuple(sub, ANY, ANY),
+			new TriTuple(ANY, ANY, obj)
 		);
 	
 		
