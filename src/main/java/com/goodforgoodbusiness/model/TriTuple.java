@@ -96,6 +96,24 @@ public class TriTuple {
 		);
 	}
 	
+	/** Create from three Strings. Null maps to any */
+	public static TriTuple from(String subject, String predicate, String object) {
+		return new TriTuple(
+			Optional.ofNullable(subject),
+			Optional.ofNullable(predicate),
+			Optional.ofNullable(object)
+		);
+	}
+	
+	/** Create from three Optional Strings. Empty maps to any */
+	public static TriTuple from(Optional<String> subject, Optional<String> predicate, Optional<String> object) {
+		return new TriTuple(
+			subject,
+			predicate,
+			object
+		);
+	}
+	
 	/**
 	 * Strip off N3 quotes
 	 */
