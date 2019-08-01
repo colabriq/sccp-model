@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.model;
+package com.colabriq.model;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableList;

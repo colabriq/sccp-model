@@ -1,10 +1,10 @@
-package com.goodforgoodbusiness.model;
+package com.colabriq.model;
 
 import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import com.goodforgoodbusiness.shared.treesort.TreeNode;
+import com.colabriq.shared.treesort.TreeNode;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.model;
+package com.colabriq.model;
 
 import static java.util.Collections.unmodifiableSet;
 import static java.util.stream.Stream.concat;
@@ -9,8 +9,8 @@ import java.util.stream.Stream;
 
 import org.apache.jena.graph.Triple;
 
-import com.goodforgoodbusiness.shared.encode.JSON;
-import com.goodforgoodbusiness.shared.treesort.TreeNode;
+import com.colabriq.shared.encode.JSON;
+import com.colabriq.shared.treesort.TreeNode;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

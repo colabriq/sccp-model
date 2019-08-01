@@ -1,9 +1,9 @@
-package com.goodforgoodbusiness.model;
+package com.colabriq.model;
 
-import static com.goodforgoodbusiness.shared.encode.Hash.sha512;
+import static com.colabriq.shared.encode.Hash.sha512;
 
-import com.goodforgoodbusiness.shared.encode.CBOR;
-import com.goodforgoodbusiness.shared.encode.Hex;
+import com.colabriq.shared.encode.CBOR;
+import com.colabriq.shared.encode.Hex;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

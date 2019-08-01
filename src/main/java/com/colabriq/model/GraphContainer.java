@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.model;
+package com.colabriq.model;
 
 import org.apache.jena.graph.Graph;
 

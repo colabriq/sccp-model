@@ -1,11 +1,11 @@
-package com.goodforgoodbusiness.model;
+package com.colabriq.model;
 
 import java.util.Collection;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.goodforgoodbusiness.shared.encode.Hex;
+import com.colabriq.shared.encode.Hex;
 
 public interface Container {
 	public String getId();

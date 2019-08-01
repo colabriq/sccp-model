@@ -1,6 +1,6 @@
-package com.goodforgoodbusiness.model;
+package com.colabriq.model;
 
-import static com.goodforgoodbusiness.model.StorableContainer.toStorableContainers;
+import static com.colabriq.model.StorableContainer.toStorableContainers;
 
 public class StoredContainerTest {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.goodforgoodbusiness.model;
+package com.colabriq.model;
 
 public class LinkVerifier extends Key {	
 	public LinkVerifier() {

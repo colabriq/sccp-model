@@ -1,10 +1,10 @@
-package com.goodforgoodbusiness.model;
+package com.colabriq.model;
 
 import static org.apache.jena.sparql.util.NodeFactoryExtra.createLiteralNode;
 
 import org.apache.jena.graph.Triple;
 
-import com.goodforgoodbusiness.shared.encode.JSON;
+import com.colabriq.shared.encode.JSON;
 
 import io.vertx.core.Future;
 
