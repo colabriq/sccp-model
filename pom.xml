@@ -13,7 +13,7 @@
 
 	<artifactId>model</artifactId>
 	<packaging>jar</packaging>
-	<name>SCCP Shared Library</name>
+	<name>SCCP Model Library</name>
 
 	<dependencies>
 		<dependency>
