@@ -6,12 +6,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class Pointer {
 	@Expose
-	@SerializedName("container_id")
-	private String containerId;
-	
-	@Expose
 	@SerializedName("container_key")
 	private String containerKey;
+	
+	@Expose
+	@SerializedName("container_location")
+	private String containerLocation;
 	
 	@Expose
 	@SerializedName("nonce")
@@ -20,18 +20,18 @@ public class Pointer {
 	public Pointer() {
 	}
 	
-	public Pointer(String containerId, String containerKey, long nonce) {
-		this.containerId = containerId;
+	public Pointer(String containerKey, String containerLocation, long nonce) {
 		this.containerKey = containerKey;
+		this.containerLocation = containerLocation;
 		this.nonce = nonce;
 	}
 	
-	public String getContainerId() {
-		return containerId;
-	}
-
 	public String getContainerKey() {
 		return containerKey;
+	}
+	
+	public String getContainerLocation() {
+		return containerLocation;
 	}
 	
 	public long getNonce() {
@@ -40,7 +40,7 @@ public class Pointer {
 	
 	@Override
 	public int hashCode() {
-		return containerId.hashCode() ^ containerKey.hashCode() ^ Long.hashCode(nonce);
+		return containerLocation.hashCode() ^ containerKey.hashCode() ^ Long.hashCode(nonce);
 	}
 	
 	@Override
@@ -51,7 +51,7 @@ public class Pointer {
 		
 		if (o instanceof Pointer) {
 			var p = (Pointer)o;
-			return containerId.equals(p.containerId) && containerKey.equals(p.containerKey) && (nonce == p.nonce);
+			return containerLocation.equals(p.containerLocation) && containerKey.equals(p.containerKey) && (nonce == p.nonce);
 		}
 		
 		return false;
@@ -59,6 +59,6 @@ public class Pointer {
 	
 	@Override
 	public String toString() {
-		return "Pointer(" + containerId + ")";
+		return "Pointer(" + containerLocation + ")";
 	}
 }
