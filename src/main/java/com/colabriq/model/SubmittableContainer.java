@@ -27,7 +27,7 @@ public abstract class SubmittableContainer {
 		;
 		
 		public static SubmitMode getDefault() {
-			return ASYNC;
+			return SYNC; // XXX ASYNC;
 		}
 	}
 	
